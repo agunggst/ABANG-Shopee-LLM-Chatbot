@@ -26,7 +26,7 @@ function App() {
   };
 
   const handleAsk = async (newMsg) => {
-    const result = await fetch('https://abang-fastapi.onrender.com/ask',
+    const result = await fetch('http://localhost:8000/ask',
       {
         method: 'POST',
         headers: {
