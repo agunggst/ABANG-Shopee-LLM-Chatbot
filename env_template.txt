@@ -1,0 +1,5 @@
+Create file .env and then fill this three variables with the respective key
+
+MONGO_DB_PASS=
+OPENAI_API_KEY=
+HF_API_KEY=

@@ -56,7 +56,7 @@ function App() {
       <div style={styles.chatContainer}>
         <div style={styles.header}>
           <div>
-            <strong>Shopee ABANG</strong>
+            <strong>Shopee ABANG 🤖</strong>
             <div style={styles.subheader}>Tanyakan apapun tentang shopee, ABANG siap membantu kamu!</div>
           </div>
         </div>
