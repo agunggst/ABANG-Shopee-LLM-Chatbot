@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 import os
 
 # --- Load ENV ---
-load_dotenv()
+load_dotenv(dotenv_path="../.env")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 MONGO_DB_PASS = os.getenv("MONGO_DB_PASS")
 
