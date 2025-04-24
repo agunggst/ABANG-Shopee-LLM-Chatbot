@@ -1,0 +1,10 @@
+streamlit
+pymongo
+langchain==0.3.24
+langchain-community==0.3.22
+langchain-openai==0.3.14
+langchain-groq==0.3.2
+langchainhub
+sentence-transformers
+huggingface_hub==0.30.2
+python-dotenv
