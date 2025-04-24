@@ -36,9 +36,9 @@ Dataset yang digunakan didapatkan menggunakan metode scraping dengan bantuan lib
 
 ---
 ## Stacks
-- Programming Language  : **Python**
-- Tools and Framewoks   : **MongoDB, VSCode, Streamlit** 
-- Library               : **selenium, bs4, pandas, matplotlib, seaborn, pymongo, langchain, streamlit**
+- Programming Language  : **Python, JavaScript**
+- Tools and Framewoks   : **MongoDB, VSCode, Streamlit, ReactJs, FastAPI** 
+- Library               : **selenium, bs4, pandas, matplotlib, seaborn, mongoDB, langchain, streamlit, OpenAI, HuggingFace**
 
 ---
 ## Others
