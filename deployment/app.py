@@ -5,7 +5,6 @@ from langchain_openai import ChatOpenAI
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.chains import RetrievalQA
 from langchain.llms import HuggingFaceHub
-from langchain_groq import ChatGroq
 from langchain.prompts import PromptTemplate
 from dotenv import load_dotenv
 import os
@@ -14,7 +13,6 @@ import os
 load_dotenv()
 huggingfacehub_api_token = os.getenv("HUGGINGFACEHUB_API_TOKEN")
 openai_api_key = os.getenv("OPENAI_API_KEY")
-groq_api_key = os.getenv("GROQ_API_KEY")
 
 # Initialize MongoDB Client
 uri = "mongodb+srv://wajemonstudio:rahasia123@wajemon.okrzgyr.mongodb.net/"
@@ -59,14 +57,6 @@ llm_gpt = ChatOpenAI(
     max_tokens=512
 )
 
-llm_llama = ChatGroq(
-    model="llama-3.1-8b-instant",
-    temperature=0.3,
-    max_retries=2,
-    max_tokens=512,
-    verbose=False,
-    groq_api_key=groq_api_key
-)
 
 # Streamlit UI
 st.set_page_config(page_title="ABANG Chatbot", page_icon="🤖")
@@ -75,15 +65,12 @@ st.write("Tanyakan apa pun tentang Shopee. ABANG siap membantu kamu!")
 
 # Model Selection
 model_option = st.selectbox("Choose a Model:", ["Abang 1 (HuggingFaceH4/zephyr-7b-beta)",
-                                                "Abang 2 (gpt-3.5-turbo)",
-                                                "Abang 3 (llama-3.1-8b-instant)"])
+                                                "Abang 2 (gpt-3.5-turbo)"])
 
 if model_option == "Abang 1 (HuggingFaceH4/zephyr-7b-beta)":
     selected_llm = llm_zephyr
-elif model_option == "Abang 2 (gpt-3.5-turbo)":
-    selected_llm = llm_gpt
 else:
-    selected_llm = llm_llama
+    selected_llm = llm_gpt
 
 # Input pertanyaan
 question = st.text_input("Pertanyaan kamu:")
@@ -103,6 +90,6 @@ if st.button("Get answer"):
             chain_type_kwargs={'prompt': prompt_template}
         )
 
-        response = qa_chain.invoke(question)
+        response = qa_chain.invoke({"query": question})
         st.markdown(f"**Jawaban:** {response['result']}")
 
