@@ -1,8 +1,10 @@
 from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from pymongo import MongoClient
 from langchain.vectorstores import MongoDBAtlasVectorSearch
-from langchain.embeddings import HuggingFaceEmbeddings
+# from langchain.embeddings import HuggingFaceEmbeddings
+from langchain_openai import OpenAIEmbeddings
 from langchain.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
 from langchain.chains import RetrievalQA
@@ -29,10 +31,22 @@ app.add_middleware(
 
 # --- Setup MongoDB & Embeddings ---
 client = MongoClient(MONGO_DB_URI, tls=True)
-collection = client['shopee']['answer_vec']
+collection = client['shopee']['answer_vec_openai']
 
-embedding = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
-vectorstore = MongoDBAtlasVectorSearch(collection, embedding, index_name='vector_index')
+# Alternative model for embedding (free)
+# embedding = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+
+embeddings = OpenAIEmbeddings(
+    model="text-embedding-3-large",
+    api_key=OPENAI_API_KEY
+)
+
+# vectorstore = MongoDBAtlasVectorSearch(
+#   collection, embedding, index_name='vector_index'
+# )
+vectorstore = MongoDBAtlasVectorSearch(
+    collection, embeddings, index_name='vector_index'
+)
 
 # --- Prompt Template ---
 base_prompt = "Your name is ABANG (Asisten Bot Andalan Ngomongin e-commerce), You work as a customer service representative at Shopee, a leading e-commerce in Indonesia. Your responsibility is to give accurate answers to customer questions. All responses should be in Indonesian and based on data that was already given. Your responses should be polite, professional, and helpful. Don’t answer to any questions or inquiries that are not related to Shopee. And do not explain any application outside shopee"
