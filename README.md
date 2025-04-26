@@ -41,7 +41,6 @@ Dataset yang digunakan didapatkan menggunakan metode scraping dengan bantuan lib
 - Library               : **selenium, bs4, pandas, matplotlib, seaborn, mongoDB, langchain, streamlit, OpenAI, HuggingFace**
 
 ---
-## Others
-- [Google Slides](https://docs.google.com/presentation/d/1XtjErSc3UvQk-SgeatE9w11x-hybarJo8UVzzO7y8yc/edit#slide=id.p5)
-- [Deployment 1](https://huggingface.co/spaces/mbale014/ABANG-chatbot-for-shopee)
-- [Deployment 2](https://abang-shopeebot.web.app/)
+## Deployment Links
+- [Deployment for React App](https://abang-shopeebot.web.app/)
+- [Deployment on Hugging Face](https://huggingface.co/spaces/mbale014/ABANG-chatbot-for-shopee)
